@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>声明式渲染</title>
+    <script src="../vue/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="counter">
+        Counter: {{ counter }}
+        <button style="margin-top: 20px" @click="stopTimer">stop timer</button>
+    </div>
+
+    <script>
+       const Counter = {
+           data () {
+               return {
+                   counter: 0
+               }
+           },
+           mounted() {
+             this.interval = setInterval(()=>{
+                   this.counter ++
+               },1000)
+           },
+           methods:{
+               stopTimer() {
+                   clearInterval(this.interval)
+               }
+           }
+       }
+       Vue.createApp(Counter).mount('#counter')
+    </script>
+
+</body>
+</html>
